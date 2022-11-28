@@ -1,0 +1,243 @@
+<mvc:View controllerName="ns.crud.controller.Main" xmlns:c="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+    <Shell>
+        <app>
+            <Page title="CRUD" showNavButton="true" navButtonPress="onCRUD">
+                <content>
+                    <Table id="headerTab" items="{sales>/}" mode="SingleSelectMaster">
+                        <items>
+                            <ColumnListItem id="__item0">
+                                <cells>
+                                    <Text text="{sales>Vbeln}" />
+                                    <DatePicker value="{ path: 'sales>Erdat', type : 'sap.ui.model.odata.type.Date'}" valueFormat="yyyy-MM-dd" />
+                                    <TimePicker value="{path: 'sales>Erzet', type: 'sap.ui.model.odata.type.Time', formatOptions: {pattern: 'HH:mm:ss'}}" valueFormat="HH:mm:ss" displayFormat="HH:mm:ss" />
+                                    <Text text="{sales>Auart}" />
+                                    <Text text="{sales>Netwr}" />
+                                    <Text text="{sales>Waerk}" />
+                                    <!-- <Text text="{sales>Vkorg}" />
+                                    <Text text="{sales>Vtweg}" />
+                                    <Text text="{sales>Spart}" /> -->
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                        <columns>
+                            <Column id="__column0">
+                                <header>
+                                    <Label text="Sales Document" id="__label0" />
+                                </header>
+                            </Column>
+                            <Column id="__column1">
+                                <header>
+                                    <Label text="Created on" id="__label1" />
+                                </header>
+                            </Column>
+                            <Column id="__column2">
+                                <header>
+                                    <Label text="Time" id="__label2" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Sales Doc. Type" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Net Value" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Currency" />
+                                </header>
+                            </Column>
+                            <!-- <Column>
+                                <header>
+                                    <Label text="Sales Org." />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Distr. Channel" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Division" />
+                                </header>
+                            </Column> -->
+                        </columns>
+                        <headerToolbar>
+                            <Toolbar width="100%" id="__toolbar1">
+                                <content>
+                                    <Button text="Get Sales" press="onGetData" width="230px" icon="sap-icon://accounting-document-verification" type="Emphasized" />
+                                    <Button text="Get Header" press="onGetHeader" width="230px" icon="sap-icon://account" type="Emphasized" />
+                                    <Button text="Get Items" press="onItems" width="230px" icon="sap-icon://account" type="Emphasized" />
+                                    <Button text="Get Header and Status" press="onGetStatus" width="230px" icon="sap-icon://account" type="Emphasized" />
+                                    <Button text="Get Header and Detail" press="onGetDetail" width="230px" icon="sap-icon://accounting-document-verification" type="Emphasized" />
+                                </content>
+                            </Toolbar>
+                        </headerToolbar>
+                    </Table>
+                    <Table id="ItemTab" items="{items>/root/results}" mode="SingleSelectMaster">
+                        <headerToolbar>
+                            <Toolbar width="100%">
+                                <content>
+                                    <Button text="Create Header" press="onCreateHeader" width="230px" icon="sap-icon://add-contact" type="Emphasized" />
+                                    <Button text="Create Items" press="onCreateItem" width="230px" icon="sap-icon://add-activity" type="Emphasized" />
+                                    <Button text="Create Header and Items" press="onCreateBoth" width="230px" icon="sap-icon://add-activity" type="Emphasized" />
+                                    <Button text="Call Function" press="onCallFunction" width="230px" icon="sap-icon://add-activity" type="Emphasized" />
+                                    <!-- Processing mode
+                                    SICF_SESSIONS
+                                    https://blogs.sap.com/2018/08/02/soft-state-support-for-odata-services/
+                                    OAuth
+                                    https://wiki.scn.sap.com/wiki/display/Security/OAuth+2.0+-+Constrained+Authorization+and+Single+Sign-On+for+OData+Services
+                                    Processing Mode
+                                    https://blogs.sap.com/2018/01/23/deployment-options-with-sap-gateway/
+                                    https://blogs.sap.com/2016/10/10/take-advantage-performance-improvements-sap-gateway-sap-netweaver-7.50-sp04/ -->
+                                    <Button text="Get Message" press="ongetMessage" width="230px" icon="sap-icon://add-activity-2" type="Emphasized" />
+                                </content>
+                            </Toolbar>
+                        </headerToolbar>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{items>Vbeln}" />
+                                    <Text text="{items>Posnr}" />
+                                    <Text text="{items>Matnr}" />
+                                    <Text text="{items>Netwr}" />
+                                    <Text text="{items>Waerk}" />
+                                    <Text text="{items>Ntgew}" />
+                                    <Text text="{items>Gewei}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                        <columns>
+                            <Column>
+                                <header>
+                                    <Label text="Sales Document" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Item No" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Material" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Price" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Currency" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="Weight" />
+                                </header>
+                            </Column>
+                            <Column>
+                                <header>
+                                    <Label text="UOM" />
+                                </header>
+                            </Column>
+                        </columns>
+                    </Table>
+                    <VBox class="sapUiLargeMarginBegin">
+                        <HBox id="idHeader">
+                            <sap.ui.layout.form:SimpleForm width="100%" xmlns:sap.ui.layout.form="sap.ui.layout.form" layout="ResponsiveGridLayout" class="sapUiLargeMarginBegin sapUiLargeMarginEnd">
+                                <sap.ui.layout.form:content>
+                                    <c:Title text="Header" />
+                                    <Label text="Sales Document" />
+                                    <Input value="{header>/root/Vbeln}" />
+                                    <Label text="Created on" />
+                                    <DatePicker value="{ path: 'header>/root/Erdat', type : 'sap.ui.model.odata.type.Date'}" valueFormat="yyyy-MM-dd" />
+                                    <Label text="Time" />
+                                    <TimePicker value="{path: 'header>/root/Erzet', type: 'sap.ui.model.odata.type.Time', formatOptions: {pattern: 'HH:mm:ss'}}" valueFormat="HH:mm:ss" displayFormat="HH:mm:ss" />
+                                    <Label text="Sales Doc. Type" />
+                                    <Input value="{header>/root/Auart}" />
+                                </sap.ui.layout.form:content>
+                            </sap.ui.layout.form:SimpleForm>
+
+                            <sap.ui.layout.form:SimpleForm width="100%" xmlns:sap.ui.layout.form="sap.ui.layout.form" layout="ResponsiveGridLayout" class="sapUiLargeMarginBegin">
+                                <sap.ui.layout.form:content>
+                                    <c:Title text="Header" />
+                                    <Label text="Sales Org." />
+                                    <Input value="{header>/root/Vkorg}" />
+                                    <Label text="Distr. Channel" />
+                                    <Input value="{header>/root/Vtweg}" />
+                                    <Label text="Division" />
+                                    <Input value="{header>/root/Spart}" />
+                                    <Label text="Net Value" />
+                                    <Input value="{header>/root/Netwr}" description="{header>/root/Waerk}" />
+                                </sap.ui.layout.form:content>
+                            </sap.ui.layout.form:SimpleForm>
+                        </HBox>
+                        <HBox>
+                            <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" layout="ResponsiveGridLayout" class="sapUiLargeMarginBegin sapUiLargeMarginEnd">
+                                <sap.ui.layout.form:content>
+                                    <!-- idstatusDoc -->
+                                    <c:Title text="Status" />
+                                    <Label text="Sales Document" />
+                                    <Input value="{status>/root/Vbeln}" />
+                                    <Label text="Rejection Status" />
+                                    <!-- <Input value="{status>/root/Abstk}" width="30%" /> -->
+                                    <Select items="{statusDoc>/root}" selectedKey="{status>/root/Abstk}">
+                                        <c:ListItem key="{statusDoc>key}" text="{statusDoc>value}" />
+                                    </Select>
+                                    <Label text="Overall Status" />
+                                    <!-- <Input value="{status>/root/Gbstk}" width="30%" /> -->
+                                    <Select items="{statusDoc>/root}" selectedKey="{status>/root/Gbstk}">
+                                        <c:ListItem key="{statusDoc>key}" text="{statusDoc>value}" />
+                                    </Select>
+                                    <Label text="Deliv–All Itms" />
+                                    <!-- <Input value="{status>/root/Uvvls}" width="30%" /> -->
+                                    <Select items="{statusDoc>/root}" selectedKey="{status>/root/Uvvls}">
+                                        <c:ListItem key="{statusDoc>key}" text="{statusDoc>value}" />
+                                    </Select>
+                                </sap.ui.layout.form:content>
+                            </sap.ui.layout.form:SimpleForm>
+                            <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" layout="ResponsiveGridLayout" class="sapUiLargeMarginBegin">
+                                <sap.ui.layout.form:content>
+                                    <!-- idstatusDoc -->
+                                    <c:Title text="Status" />
+                                    <Label text="Billg–All Items" />
+                                    <!-- <Input value="{status>/root/Uvfas}" width="30%" /> -->
+                                    <Select items="{statusDoc>/root}" selectedKey="{status>/root/Uvfas}">
+                                        <c:ListItem key="{statusDoc>key}" text="{statusDoc>value}" />
+                                    </Select>
+                                    <Label text="Overall Header" />
+                                    <!-- <Input value="{status>/root/Uvall}" width="30%" /> -->
+                                    <Select items="{statusDoc>/root}" selectedKey="{status>/root/Uvall}">
+                                        <c:ListItem key="{statusDoc>key}" text="{statusDoc>value}" />
+                                    </Select>
+                                    <Label text="Delivery – Hdr" />
+                                    <!-- <Input value="{status>/root/Uvvlk}" width="30%" /> -->
+                                    <Select items="{statusDoc>/root}" selectedKey="{status>/root/Uvvlk}">
+                                        <c:ListItem key="{statusDoc>key}" text="{statusDoc>value}" />
+                                    </Select>
+                                    <Label text="Billing – Hdr" />
+                                    <!-- <Input value="{status>/root/Uvfak}" width="30%" /> -->
+                                    <Select items="{statusDoc>/root}" selectedKey="{status>/root/Uvfak}">
+                                        <c:ListItem key="{statusDoc>key}" text="{statusDoc>value}" />
+                                    </Select>
+                                    <Label text="Prcg – All Itms" />
+                                    <!-- <Input value="{status>/root/Uvprs}" width="30%" /> -->
+                                    <Select items="{statusDoc>/root}" selectedKey="{status>/root/Uvprs}">
+                                        <c:ListItem key="{statusDoc>key}" text="{statusDoc>value}" />
+                                    </Select>
+                                </sap.ui.layout.form:content>
+                            </sap.ui.layout.form:SimpleForm>
+                        </HBox>
+                    </VBox>
+                </content>
+            </Page>
+        </app>
+    </Shell>
+</mvc:View>
